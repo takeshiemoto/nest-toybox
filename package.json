@@ -37,6 +37,7 @@
   },
   "devDependencies": {
     "@nestjs/schematics": "^7.0.0",
+    "@nestjs/swagger": "4.8.2",
     "@nestjs/testing": "^7.0.0",
     "@nrwl/cli": "12.7.2",
     "@nrwl/eslint-plugin-nx": "12.7.2",
@@ -58,6 +59,7 @@
     "eslint-config-prettier": "8.1.0",
     "jest": "27.0.3",
     "prettier": "^2.3.1",
+    "swagger-ui-express": "^4.1.6",
     "ts-jest": "27.0.3",
     "ts-node": "~9.1.1",
     "typescript": "~4.3.5"
