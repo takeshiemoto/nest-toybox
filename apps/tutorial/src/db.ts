@@ -36,3 +36,16 @@ export const teachers = [
     name: 'Mr Wade',
   },
 ];
+
+export const users = [
+  {
+    id: '98a41b85-e88c-7ad4-45a6-8fe575a7c77c',
+    username: 'john',
+    password: 'changeme',
+  },
+  {
+    id: '3944c584-d14c-e4bf-c03a-d9ebb8abce2d',
+    username: 'maria',
+    password: 'guess',
+  },
+];
