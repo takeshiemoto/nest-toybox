@@ -6,6 +6,7 @@ import {
   ParseUUIDPipe,
   Post,
   Put,
+  UseGuards,
 } from '@nestjs/common';
 import {
   CreateStudentDto,
@@ -14,8 +15,10 @@ import {
   UpdateStudentDto,
 } from './dto/student.dto';
 import { StudentService } from './student.service';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 
 @Controller('students')
+@UseGuards(JwtAuthGuard)
 export class StudentController {
   constructor(private readonly studentService: StudentService) {}
 
