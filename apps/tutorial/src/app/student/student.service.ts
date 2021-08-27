@@ -23,7 +23,7 @@ export class StudentService {
     return this.studentRepository.find();
   }
 
-  getStudentById(studentId: string): Promise<Student | undefined> {
+  getStudentById(studentId: number): Promise<Student | undefined> {
     return this.studentRepository.findOne(studentId);
   }
 

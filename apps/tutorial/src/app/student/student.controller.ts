@@ -3,6 +3,7 @@ import {
   Controller,
   Get,
   Param,
+  ParseIntPipe,
   ParseUUIDPipe,
   Post,
   Put,
@@ -24,15 +25,14 @@ export class StudentController {
 
   @Get()
   getStudents(): Promise<Student[]> {
-    // Repo => Controller => DTO（ここがあっても良さそう）
     return this.studentService.getStudents();
   }
 
-  @Get('/:studentId')
-  getStudentById(
-    @Param('studentId', new ParseUUIDPipe()) studentId: string
+  @Get('/:id')
+  async getStudentById(
+    @Param('id', new ParseIntPipe()) id: number
   ): Promise<Student | undefined> {
-    return this.studentService.getStudentById(studentId);
+    return this.studentService.getStudentById(id);
   }
 
   @Post()
