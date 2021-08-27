@@ -1,78 +1,21 @@
 import { Injectable } from '@nestjs/common';
-import { v4 as uuid } from 'uuid';
-import { students } from '../../db';
-import {
-  CreateStudentDto,
-  FindStudentResponseDto,
-  StudentResponseDto,
-  UpdateStudentDto,
-} from './dto/student.dto';
+import { Prisma,Student } from '@prisma/client';
+
+import { PrismaService } from '../utils/prisma.service';
 
 @Injectable()
 export class StudentService {
-  private students = students;
+  constructor(private readonly prismaService: PrismaService) {}
 
-  getStudents() {
-    return [];
+  async findAll(): Promise<Student[]> {
+    return this.prismaService.student.findMany();
   }
 
-  getStudentById(studentId: number) {
-    return null;
-  }
-
-  createStudent(payload: CreateStudentDto): StudentResponseDto {
-    const newStudent = {
-      id: uuid(),
-      ...payload,
-    };
-
-    this.students.push(newStudent);
-
-    return newStudent;
-  }
-
-  updateStudent(
-    payload: UpdateStudentDto,
-    studentId: string
-  ): StudentResponseDto {
-    let updatedStudent: StudentResponseDto;
-
-    this.students = this.students.map((student) => {
-      if (student.id === studentId) {
-        updatedStudent = {
-          id: studentId,
-          ...payload,
-        };
-        return updatedStudent;
-      }
-      return student;
+  async findById(
+    studentWhereUniqInput: Prisma.StudentWhereUniqueInput
+  ): Promise<Student> {
+    return this.prismaService.student.findUnique({
+      where: studentWhereUniqInput,
     });
-
-    return updatedStudent;
-  }
-
-  getStudentByTeacherId(teacherId: string): FindStudentResponseDto[] {
-    return this.students.filter((student) => student.teacher === teacherId);
-  }
-
-  updateStudentTeacher(
-    teacherId: string,
-    studentId: string
-  ): StudentResponseDto {
-    let updatedStudent: StudentResponseDto;
-
-    this.students = this.students.map((student) => {
-      if (student.id === studentId) {
-        updatedStudent = {
-          id: studentId,
-          ...student,
-          teacher: teacherId,
-        };
-        return updatedStudent;
-      }
-      return student;
-    });
-
-    return updatedStudent;
   }
 }

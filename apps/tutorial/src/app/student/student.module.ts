@@ -1,27 +1,12 @@
-import {
-  MiddlewareConsumer,
-  Module,
-  NestModule,
-  RequestMethod,
-} from '@nestjs/common';
+import { Module } from '@nestjs/common';
+
+import { PrismaService } from '../utils/prisma.service';
 import { StudentController } from './student.controller';
 import { StudentService } from './student.service';
-import { ValidStudentMiddleware } from '../common/middleware/validStudentMiddleware';
 
 @Module({
   controllers: [StudentController],
-  providers: [StudentService],
+  providers: [StudentService, PrismaService],
   exports: [StudentService],
 })
-export class StudentModule implements NestModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer.apply(ValidStudentMiddleware).forRoutes({
-      path: 'students/:studentId',
-      method: RequestMethod.GET,
-    });
-    consumer.apply(ValidStudentMiddleware).forRoutes({
-      path: 'students/:studentId',
-      method: RequestMethod.PUT,
-    });
-  }
-}
+export class StudentModule {}
