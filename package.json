@@ -23,7 +23,9 @@
     "update": "nx migrate latest",
     "workspace-generator": "nx workspace-generator",
     "dep-graph": "nx dep-graph",
-    "help": "nx help"
+    "help": "nx help",
+    "typeorm:migrate": "typeorm migration:create -n PostRefactoring",
+    "typeorm:run": "typeorm migration:run"
   },
   "private": true,
   "dependencies": {
@@ -32,12 +34,15 @@
     "@nestjs/jwt": "^8.0.0",
     "@nestjs/passport": "^8.0.1",
     "@nestjs/platform-express": "^7.0.0",
+    "@nestjs/typeorm": "7.1.5",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
+    "pg": "^8.7.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "~6.6.3",
     "tslib": "^2.0.0",
+    "typeorm": "^0.2.37",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
