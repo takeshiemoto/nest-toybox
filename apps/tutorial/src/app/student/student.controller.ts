@@ -16,7 +16,6 @@ import {
 } from './dto/student.dto';
 import { StudentService } from './student.service';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
-import { Student } from './student.entity';
 
 @Controller('students')
 @UseGuards(JwtAuthGuard)
@@ -24,14 +23,12 @@ export class StudentController {
   constructor(private readonly studentService: StudentService) {}
 
   @Get()
-  getStudents(): Promise<Student[]> {
+  getStudents() {
     return this.studentService.getStudents();
   }
 
   @Get('/:id')
-  async getStudentById(
-    @Param('id', new ParseIntPipe()) id: number
-  ): Promise<Student | undefined> {
+  async getStudentById(@Param('id', new ParseIntPipe()) id: number) {
     return this.studentService.getStudentById(id);
   }
 

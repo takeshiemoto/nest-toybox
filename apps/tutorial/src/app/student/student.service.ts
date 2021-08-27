@@ -7,24 +7,17 @@ import {
   StudentResponseDto,
   UpdateStudentDto,
 } from './dto/student.dto';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Student } from './student.entity';
-import { Repository } from 'typeorm';
 
 @Injectable()
 export class StudentService {
-  constructor(
-    @InjectRepository(Student)
-    private readonly studentRepository: Repository<Student>
-  ) {}
   private students = students;
 
-  getStudents(): Promise<Student[]> {
-    return this.studentRepository.find();
+  getStudents() {
+    return [];
   }
 
-  getStudentById(studentId: number): Promise<Student | undefined> {
-    return this.studentRepository.findOne(studentId);
+  getStudentById(studentId: number) {
+    return null;
   }
 
   createStudent(payload: CreateStudentDto): StudentResponseDto {

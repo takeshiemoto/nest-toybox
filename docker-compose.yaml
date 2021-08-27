@@ -3,7 +3,9 @@ services:
   postgres:
     image: postgres
     environment:
-      POSTGRES_PASSWORD: nesttoybox
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=testdb
     volumes:
       - ./pgsql-data:/var/lib/postgresql/data
     ports:
